@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Aladhan Time</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        height: 100vh;
+        background-image: url(imgs/david-rodrigo-kZ1zThg6G40-unsplash.jpg);
+        background-size: cover;
+        animation: change-img 35s linear infinite;
+      }
+      .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0 0 0 / 69%);
+        z-index: -1;
+      }
+      .container {
+        width: 1600px;
+        height: 100%;
+        margin: auto;
+      }
+      .title {
+        font-family: "Noto Nastaliq Urdu", serif;
+        color: white;
+        position: relative;
+        width: fit-content;
+        margin: 0;
+        top: 35px;
+        left: 50%;
+        transform: translateX(-50%);
+        line-height: 3;
+        word-spacing: 50px;
+        text-shadow: 0px 0px 30px white;
+        font-size: 40px;
+        font-weight: 1000;
+      }
+      .para {
+        color: white;
+        font-size: 40px;
+        margin: 0;
+        position: relative;
+        text-align: center;
+        top: 60px;
+        letter-spacing: 15px;
+        font-weight: 800;
+        text-shadow: 0px 0px 30px white;
+      }
+      .selected-city {
+        width: 250px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin: auto;
+        position: relative;
+        top: 60px;
+        text-shadow: 0px 0px 30px white;
+      }
+      .selected-city > p {
+        color: white;
+        font-size: 50px;
+        font-weight: 800;
+        letter-spacing: 6px;
+        position: relative;
+        left: -50px;
+      }
+      .selected-city span {
+        color: white;
+        font-size: 25px;
+        font-weight: 800;
+        cursor: pointer;
+        text-shadow: 0 0 5px white;
+        position: relative;
+        left: -60px;
+        top: 5px;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .cities-list {
+        background-color: #6866666e;
+        width: 700px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 360px;
+        border-radius: 20px;
+        transition: 0.5s;
+        display: none;
+      }
+      .cities-list.viw {
+        display: block;
+      }
+      .cities-list .country {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        column-gap: 60px;
+        margin: 10px 15px;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-content: center;
+      }
+      .cities-list .country ul {
+        margin: 0 0 5px 0;
+        padding: 0;
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffffb3;
+      }
+      .cities-list .country ul li:not(:last-child) {
+        margin: 0 0 25px 0;
+      }
+      .cities-list .country ul li {
+        cursor: pointer;
+      }
+      .date-time {
+        direction: rtl;
+      }
+      .date-time p {
+        font-family: "Noto Nastaliq Urdu", serif;
+        color: white;
+        font-size: 60px;
+        word-spacing: 5px;
+        text-shadow: 0px 0px 30px white;
+        margin: 0;
+      }
+      .name-time {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+      }
+      .name-time .box {
+        color: white;
+        width: 200px;
+        padding: 15px;
+        margin: 10px 50px;
+        background-color: #62626269;
+        border-radius: 20px;
+      }
+      .name-time .box p {
+        margin: 0;
+        text-align: center;
+        font-size: 50px;
+        font-weight: bold;
+        border-bottom: 1px solid #666666;
+        font-family: "Noto Nastaliq Urdu", serif;
+        text-shadow: 0px 0px 30px white;
+      }
+      .name-time .box span {
+        font-size: 50px;
+        font-weight: bold;
+        font-family: "Noto Nastaliq Urdu", serif;
+        text-shadow: 0px 0px 30px white;
+        margin: 0px 0 0 15px;
+      }
+      @keyframes change-img {
+        0%,
+        8.33333% {
+          background-image: url(imgs/david-rodrigo-kZ1zThg6G40-unsplash.jpg);
+        }
+        16.66666%,
+        24.99999% {
+          background-image: url(imgs/nick-fewings-sfMW7-4NI-o-unsplash.jpg);
+        }
+        33.33332%,
+        41.66665% {
+          background-image: url(imgs/dhru-j-r7H8kkoYyCY-unsplash.jpg);
+        }
+        49.99998%,
+        58.33331% {
+          background-image: url(imgs/mosque-g9f8191006_1920.jpg);
+        }
+        66.66664%,
+        74.99997% {
+          background-image: url(imgs/jerusalem-ga9087db77_1920.jpg);
+        }
+        83.3333%,
+        91.66663% {
+          background-image: url(imgs/katerina-kerdi-xp_w_LvY0pg-unsplash.jpg);
+        }
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <div class="container">
+      <h1 class="title">بسم الله الرحمن الرحيم</h1>
+      <p class="para">Choose your city</p>
+      <dev class="selected-city">
+        <p></p>
+        <span class="change" id="toggleButton">&#x21C4;</span>
+      </dev>
+      <div class="cities-list">
+        <ul class="country">
+          <ul data-country="United Kingdom">
+            <li data-city="London">London</li>
+            <li data-city="Liverpool">Liverpool</li>
+            <li data-city="Manchester">Manchester</li>
+          </ul>
+          <ul data-country="Egypt">
+            <li data-city="Cairo">Cairo</li>
+            <li data-city="Alexandria">Alexandria</li>
+            <li data-city="Sinai">Sinai</li>
+          </ul>
+          <ul data-country="Syria">
+            <li data-city="Aleppo">Aleppo</li>
+            <li data-city="Damascus">Damascus</li>
+            <li data-city="Homs">Homs</li>
+          </ul>
+          <ul data-country="Saudi Arabia">
+            <li data-city="Riyadh">Riyadh</li>
+            <li data-city="Jeddah">Jeddah</li>
+            <li data-city="Mecca">Mecca</li>
+            <li data-city="Madinah">Madinah</li>
+          </ul>
+        </ul>
+      </div>
+      <div class="date-time">
+        <p>الخميس، 3 آب</p>
+      </div>
+      <div class="name-time">
+        <div class="box">
+          <p>العشاء</p>
+          <span>4:55</span>
+        </div>
+        <div class="box">
+          <p>المغرب</p>
+          <span>4:55</span>
+        </div>
+        <div class="box">
+          <p>العصر</p>
+          <span>4:55</span>
+        </div>
+        <div class="box">
+          <p>الظهر</p>
+          <span>4:55</span>
+        </div>
+        <div class="box">
+          <p>الشروق</p>
+          <span>4:55</span>
+        </div>
+        <div class="box">
+          <p>الفجر</p>
+          <span>4:55</span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    if (window.localStorage.getItem("city")) {
+      let defCity = window.localStorage.getItem("city");
+      document.querySelector(".selected-city > p").innerHTML = defCity;
+      let theCity = window.localStorage.getItem("city");
+      let theCountry = window.localStorage.getItem("country");
+      getData(theCity, theCountry, year, month, day);
+    } else {
+      let defCity = document.querySelector(".country > ul > li");
+      let theCity = defCity.textContent;
+      let theCountry = defCity.parentElement.dataset.country;
+      getData(theCity, theCountry, year, month, day);
+      document.querySelector(".selected-city > p").innerHTML =
+        defCity.textContent;
+    }
+
+    let choCity = document.querySelectorAll("li");
+    for (i of choCity) {
+      i.addEventListener("click", function (ele) {
+        defCity = ele.target;
+        document.querySelector(".selected-city > p").innerHTML =
+          defCity.textContent;
+        let theCity = defCity.dataset.city;
+        let theCountry = defCity.parentElement.dataset.country;
+        if (
+          window.localStorage.getItem("city") &&
+          window.localStorage.getItem("country")
+        ) {
+          localStorage.clear();
+          addDataToLocalStoreg(theCity, theCountry);
+          theCity = localStorage.getItem("city");
+          theCountry = localStorage.getItem("country");
+        } else {
+          localStorage.clear();
+          addDataToLocalStoreg(theCity, theCountry);
+        }
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        getData(theCity, theCountry, year, month, day);
+      });
+    }
+
+    document
+      .querySelector(".selected-city span")
+      .addEventListener("click", function () {
+        let myCityList = document.querySelector(".cities-list");
+        if (myCityList.classList.contains("viw")) {
+          myCityList.classList.remove("viw");
+        } else {
+          myCityList.classList.add("viw");
+        }
+      });
+    document.addEventListener("click", function (event) {
+      let element = event.target;
+      if (element.id !== "toggleButton") {
+        document.querySelector(".cities-list").classList.remove("viw");
+      }
+    });
+
+    function getData(city, country, year, month, day) {
+      axios
+        .get(`http://api.aladhan.com/v1/calendarByCity/${year}/${month}?`, {
+          params: {
+            city: city,
+            country: country,
+            method: 2,
+          },
+        })
+        .then(function (response) {
+          return response.data;
+        })
+        .then(function (myData) {
+          myData = myData.data[day - 1];
+          let timings = myData.timings;
+          let timing = [
+            timings.Fajr.split(""),
+            timings.Sunrise.split(""),
+            timings.Dhuhr.split(""),
+            timings.Asr.split(""),
+            timings.Maghrib.split(""),
+            timings.Isha.split(""),
+          ];
+          let dayAndDate = myData.date;
+          dayDefinition(dayAndDate);
+          addDataToBoxs(timing);
+        });
+    }
+    function addDataToLocalStoreg(city, country) {
+      localStorage.setItem("city", city);
+      localStorage.setItem("country", country);
+    }
+    function dayDefinition(dayAndDate) {
+      let dayName = dayAndDate.hijri.weekday.ar;
+      let monthName = dayAndDate.gregorian.month.en;
+      let dayNum = dayAndDate.gregorian.day;
+      if (monthName === "January") {
+        monthName = "كانون الثاني";
+      } else if (monthName === "February") {
+        monthName = "شباط";
+      } else if (monthName === "March") {
+        monthName = "آذار";
+      } else if (monthName === "April") {
+        monthName = "نيسان";
+      } else if (monthName === "May") {
+        monthName = "أيار";
+      } else if (monthName === "June") {
+        monthName = "حزيرا";
+      } else if (monthName === "July") {
+        monthName = "تموز";
+      } else if (monthName === "August") {
+        monthName = "آب";
+      } else if (monthName === "September") {
+        monthName = "أيلول";
+      } else if (monthName === "October") {
+        monthName = "تشرين الأول";
+      } else if (monthName === "November") {
+        monthName = "تشرين الثاني";
+      } else if (monthName === "December") {
+        monthName = "كانون الاول";
+      }
+
+      document.querySelector(".date-time p").innerHTML = "";
+      document.querySelector(
+        ".date-time p"
+      ).innerHTML = `${dayName}، ${dayNum} ${monthName}`;
+    }
+    function addDataToBoxs(timings) {
+      let boxs = Array.from(document.querySelectorAll(".box span")).reverse();
+      for (let i = 0; i < boxs.length; i++) {
+        boxs[i].innerHTML = timings[i].slice(0, 5).join("");
+      }
+    }
+  </script>
+</html>
